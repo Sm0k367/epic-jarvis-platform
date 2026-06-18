@@ -1,6 +1,6 @@
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { LiveDemo } from './components/LiveDemo';
+import { Chat } from './components/Chat';
 import { Skills } from './components/Skills';
 import { Architecture } from './components/Architecture';
 import { UseCases } from './components/UseCases';
@@ -14,7 +14,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <LiveDemo />
+        <Chat />
         <Skills />
         <Architecture />
         <UseCases />

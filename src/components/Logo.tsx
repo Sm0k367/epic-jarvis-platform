@@ -13,7 +13,7 @@ export function Logo({ className = '', size = 28, showText = true }: LogoProps) 
         viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        aria-label="JARVIS"
+        aria-label="Epic Tech AI"
       >
         <defs>
           <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
@@ -34,9 +34,14 @@ export function Logo({ className = '', size = 28, showText = true }: LogoProps) 
         <circle cx="23" cy="22" r="1.5" fill="url(#logo-grad)" />
       </svg>
       {showText && (
-        <span className="font-display text-xl tracking-tight text-text">
-          JARVIS
-        </span>
+        <div className="flex items-baseline gap-1.5">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">
+            Epic Tech AI
+          </span>
+          <span className="font-display text-lg tracking-tight text-text">
+            JARVIS
+          </span>
+        </div>
       )}
     </div>
   );

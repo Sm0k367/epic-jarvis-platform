@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== JARVIS Design System =====
+/* ===== Epic Tech AI Design System =====
+   JARVIS — Just A Really Very Intelligent System.
    Dark-first aesthetic with electric cyan + plasma violet.
    Inspired by AI control surfaces: precision, glow, depth.
 */
@@ -34,7 +35,7 @@
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
-  /* JARVIS Dark Palette — HSL values for Tailwind */
+  /* Epic Tech AI Dark Palette — HSL values for Tailwind */
   --bg: 240 18% 5%;
   --surface: 240 17% 7%;
   --surface-2: 240 16% 9%;

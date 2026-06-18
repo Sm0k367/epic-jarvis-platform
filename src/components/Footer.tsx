@@ -27,12 +27,27 @@ export function Footer() {
           <div>
             <Logo size={32} />
             <p className="text-sm text-text-muted mt-4 max-w-xs leading-relaxed">
-              Just A Really Very Intelligent System. An AI agent platform built for shipping work.
+              <strong className="text-text">Epic Tech AI</strong> — JARVIS is an AI agent platform built for shipping work. Powered by SOTA models.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-border text-xs font-mono">
-              <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-              <span className="text-text-muted">All systems operational</span>
+            <div className="mt-6 space-y-2">
+              <a href="mailto:epictechai@gmail.com" className="flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                epictechai@gmail.com
+              </a>
+              <a href="https://x.com/EpicTechAI" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                @EpicTechAI
+              </a>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface border border-border text-xs font-mono mt-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+                <span className="text-text-muted">All systems operational</span>
+              </div>
             </div>
           </div>
 
@@ -58,20 +73,20 @@ export function Footer() {
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="text-xs text-text-faint font-mono">
-            © 2026 JARVIS Platform · MIT License · Built by humans, refined by agents
+            © 2026 Epic Tech AI · JARVIS · MIT License · <a href="mailto:epictechai@gmail.com" className="hover:text-text-muted transition-colors">epictechai@gmail.com</a>
           </div>
           <div className="flex items-center gap-5 text-xs text-text-faint">
-            <a href="#" className="hover:text-text-muted transition-colors">GitHub</a>
-            <a href="#" className="hover:text-text-muted transition-colors">X / Twitter</a>
+            <a href="https://github.com/Sm0k367/epic-jarvis-platform" target="_blank" rel="noreferrer" className="hover:text-text-muted transition-colors">GitHub</a>
+            <a href="https://x.com/EpicTechAI" target="_blank" rel="noreferrer" className="hover:text-text-muted transition-colors">X / Twitter</a>
+            <a href="mailto:epictechai@gmail.com" className="hover:text-text-muted transition-colors">Email</a>
             <a href="#" className="hover:text-text-muted transition-colors">Discord</a>
-            <a href="#" className="hover:text-text-muted transition-colors">YouTube</a>
           </div>
         </div>
       </div>
 
       {/* Big background type */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
-        <div className="font-display text-[clamp(8rem,20vw,18rem)] leading-none tracking-tighter text-center bg-gradient-to-t from-surface-offset/30 to-transparent bg-clip-text text-transparent select-none">
+        <div className="font-display text-[clamp(6rem,15vw,14rem)] leading-none tracking-tighter text-center bg-gradient-to-t from-surface-offset/30 to-transparent bg-clip-text text-transparent select-none">
           JARVIS
         </div>
       </div>

@@ -17,8 +17,8 @@ export function Header() {
   }, [theme]);
 
   const links = [
+    { href: '#chat', label: 'Try JARVIS' },
     { href: '#skills', label: 'Skills' },
-    { href: '#demo', label: 'Demo' },
     { href: '#architecture', label: 'Architecture' },
     { href: '#pricing', label: 'Pricing' },
     { href: '#docs', label: 'Docs' },
@@ -75,10 +75,10 @@ export function Header() {
             Sign in
           </a>
           <a
-            href="#cta"
+            href="#chat"
             className="inline-flex items-center justify-center px-4 h-9 rounded-md bg-gradient-to-br from-primary to-accent text-bg font-medium text-sm hover:opacity-90 transition-opacity"
           >
-            Launch JARVIS
+            Try JARVIS
           </a>
         </div>
       </div>

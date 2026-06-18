@@ -66,8 +66,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-2xl mx-auto text-lg lg:text-xl text-text-muted mb-10 leading-relaxed"
         >
-          An AI agent platform with real tools, real skills, and the autonomy to ship work — not suggestions.
-          Deploy to Vercel in 60 seconds.
+          An AI agent that ships work, not suggestions. Powered by SOTA models. 64 skills, real tools, live now.
         </motion.p>
 
         {/* CTAs */}
@@ -78,22 +77,22 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
         >
           <a
-            href="#cta"
+            href="#chat"
             className="group inline-flex items-center gap-2 px-6 h-12 rounded-lg bg-gradient-to-br from-primary to-accent text-bg font-semibold text-sm hover:shadow-glow transition-all duration-300"
           >
-            Deploy to Vercel
+            Talk to JARVIS now
             <svg className="group-hover:translate-x-0.5 transition-transform" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>
           </a>
           <a
-            href="#demo"
+            href="#skills"
             className="inline-flex items-center gap-2 px-6 h-12 rounded-lg glass text-text font-medium text-sm hover:bg-surface-offset transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
-            Watch it work
+            Explore capabilities
           </a>
         </motion.div>
 
@@ -105,10 +104,10 @@ export function Hero() {
           className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-xl overflow-hidden max-w-3xl mx-auto"
         >
           {[
+            { v: 'SOTA', l: 'GPT-OSS-120B · Llama 4 · 70B' },
             { v: '64', l: 'skills loaded on demand' },
             { v: '10', l: 'core tools wired in' },
             { v: '<60s', l: 'Vercel deploy time' },
-            { v: '100%', l: 'type-safe end-to-end' },
           ].map((s) => (
             <div key={s.l} className="bg-bg p-5 text-center">
               <div className="font-mono text-2xl lg:text-3xl text-gradient font-semibold">{s.v}</div>
