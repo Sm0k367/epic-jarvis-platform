@@ -15,7 +15,6 @@ Operating principles:
 5. Fail loudly, recover fast.
 
 Capabilities:
-- You have access to web search (call it when you need current information).
 - You can write code, drafts, plans, analyses.
 - You prefer concrete, specific answers over generic ones.
 - You are concise but thorough.
@@ -59,6 +58,15 @@ const TOOLS = [
   },
 ];
 
+// Models that support tool use
+const TOOL_CAPABLE_MODELS = new Set([
+  'llama-3.3-70b-versatile',
+  'openai/gpt-oss-120b',
+  'openai/gpt-oss-20b',
+  'meta-llama/llama-4-scout-17b-16e-instruct',
+  'qwen/qwen3-32b',
+]);
+
 async function webSearch(query: string, maxResults = 5) {
   const res = await fetch('https://api.tavily.com/search', {
     method: 'POST',
@@ -84,12 +92,6 @@ async function webSearch(query: string, maxResults = 5) {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { messages, model = 'llama-3.3-70b-versatile', temperature = 0.7 } = req.body as ChatRequestBody;
-
   // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -99,24 +101,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).end();
   }
 
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  if (!GROQ_API_KEY) {
+    return res.status(500).json({ error: 'GROQ_API_KEY not configured' });
+  }
+
+  const { messages, model = 'llama-3.3-70b-versatile', temperature = 0.7 } = req.body as ChatRequestBody;
+
   try {
     const groqMessages = [{ role: 'system' as const, content: SYSTEM_PROMPT }, ...messages];
+    const supportsTools = TOOL_CAPABLE_MODELS.has(model);
 
-    // First call — agent decides if it needs tools
+    // First call
+    const requestBody: any = {
+      model,
+      messages: groqMessages,
+      temperature,
+      max_tokens: 2048,
+    };
+    if (supportsTools) {
+      requestBody.tools = TOOLS;
+      requestBody.tool_choice = 'auto';
+    }
+
     let groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${GROQ_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        model,
-        messages: groqMessages,
-        tools: TOOLS,
-        tool_choice: 'auto',
-        temperature,
-        max_tokens: 2048,
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     if (!groqRes.ok) {
@@ -129,11 +146,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Tool use loop — up to 3 rounds
     let rounds = 0;
-    while (assistantMessage?.tool_calls?.length && rounds < 3) {
+    while (supportsTools && assistantMessage?.tool_calls?.length && rounds < 3) {
       rounds += 1;
       const toolCalls = assistantMessage.tool_calls;
 
-      // Execute tools in parallel
       const toolMessages = await Promise.all(
         toolCalls.map(async (tc: any) => {
           let args: any = {};
@@ -152,7 +168,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         })
       );
 
-      // Follow-up call with tool results
       groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
